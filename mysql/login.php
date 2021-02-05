@@ -1,7 +1,30 @@
 <?php
 if(isset($_POST['submit']))
 {
-    echo "Yes We got the Information";
+ $username= $_POST['username'];
+ $password=  $_POST['password'];
+ $connection = mysqli_connect('localhost','root','','loginapp');
+  if ($connection)
+  {
+      echo "We are connected";
+  }else{
+      die("Database Connection Failed");
+  }
+  $query="INSERT INTO usertest('username','password')";
+  $query .= "VALUES('$username','$password')";
+
+   
+  
+
+ /*if($username && $password)
+ {
+     echo $username;
+     echo $password;
+ }else{
+     echo "This field cannot be blank";
+ }
+*/
+
 }
 
 ?>
@@ -25,11 +48,11 @@ if(isset($_POST['submit']))
         <form action="login.php" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" name="username">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control">
+                <input type="password" class="form-control" name="password">
             </div>
             <input class="btn btn-primary" type="submit" value="Submit" name="submit">
         </form>
