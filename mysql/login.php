@@ -10,9 +10,15 @@ if(isset($_POST['submit']))
   }else{
       die("Database Connection Failed");
   }
-  $query="INSERT INTO usertest('username','password')";
+  $query="INSERT INTO users( username, password)";
   $query .= "VALUES('$username','$password')";
 
+
+$result=mysqli_query($connection,$query); 
+
+if(!$result){
+    die('Query Failed' );
+}
    
   
 
