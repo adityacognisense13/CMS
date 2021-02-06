@@ -1,6 +1,26 @@
 <?php
-include_once "db.php";
 
+$servername = "localhost";
+$username= "root";
+$password = "cmpl";
+$dbname = "login_app";
+
+//creating a connection
+
+$conn= new mysqli($servername,$username,$password,$dbname);
+
+//checking the connection
+
+if($conn->connect_error)
+{
+    die("Connection Failed:" .$conn->connect_error);
+}
+$sql = "SELECT * FROM users";
+$result = mysqli_query($conn,$sql);
+if (!$result)
+{
+    die('Query Failed' .mysqli_error());
+}
 ?>
 
 <!doctype html>
@@ -36,7 +56,7 @@ include_once "db.php";
                     <?php
                     while($row = mysqli_fetch_assoc($result))
                     {
-                       $id = $row['id'];
+                        $id = $row['id'];
                         echo " <option value='$id'>$id</option>";
                     }
                     ?>
