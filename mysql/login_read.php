@@ -1,34 +1,12 @@
 <?php
+require "functions.php"
 
-$servername = "localhost";
-$username= "root";
-$password = "cmpl";
-$dbname = "login_app";
-
-//creating a connection
-
-$conn= new mysqli($servername,$username,$password,$dbname);
-
-//checking the connection
-
-if($conn->connect_error)
-{
-    die("Connection Failed:" .$conn->connect_error);
-}
-$sql = "SELECT * FROM users";
-$result = mysqli_query($conn,$sql);
-if (!$result)
-{
-    die('Query Failed' .mysqli_error());
-}
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -49,20 +27,13 @@ if (!$result)
                 <input type="password" class="form-control" name="password">
             </div>
 
-            <input class="btn btn-primary" type="submit" value="Submit" name="submit"> <br><br>
+            <input class="btn btn-primary" type="submit" value="Update" name="submit"> <br><br>
             <div class="form-group">
 
                 <select name="id" id="">
                     <?php
-                    while($row = mysqli_fetch_assoc($result))
-                    {
-                        $id = $row['id'];
-                        echo " <option value='$id'>$id</option>";
-                    }
+                    showAllData();
                     ?>
-                    ?>
-                    <option value="">2</option>
-
                 </select>
             </div>
         </form>
